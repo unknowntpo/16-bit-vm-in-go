@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
 	// Create memory with 256 bytes.
 	memory := newMemory(256)
@@ -11,18 +7,27 @@ func main() {
 	cpu := newCPU(memory)
 
 	// Set data and instructions in memory.
-	memory.Set(0x0, MOV_LIT_R1)
-	memory.Set(0x1, 0x12)
-	memory.Set(0x2, 0x34)
-	memory.Set(0x3, MOV_LIT_R2)
-	memory.Set(0x4, 0xAB)
-	memory.Set(0x5, 0xCD)
-	memory.Set(0x6, ADD_REG_REG)
-	memory.Set(0x7, 0x2) // r1
-	memory.Set(0x8, 0x3) // r2
+	memory.set(0x0, int(MOV_LIT_R1))
+	memory.set(0x1, 0x12)
+	memory.set(0x2, 0x34)
+	memory.set(0x3, int(MOV_LIT_R2))
+	memory.set(0x4, 0xAB)
+	memory.set(0x5, 0xCD)
+	memory.set(0x6, int(ADD_REG_REG))
+	memory.set(0x7, int(REG_R1)) // r1
+	memory.set(0x8, int(REG_R2)) // r2
 
-	cpu.Mem.Show()
+	cpu.show()
 	// Fetch a byte.
-	//cpu.Step()
+	// MOV_LIT_R1 0x1234 REG_R1
+	cpu.step()
+	cpu.show()
+
+	// MOV_LIT_R2 0xABCD REG_R2
+	cpu.step()
+	cpu.show()
+	// ADD_REG_REG REG_R1 REG_R2
+	cpu.step()
+	cpu.show()
 
 }

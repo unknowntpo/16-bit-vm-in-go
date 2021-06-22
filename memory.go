@@ -4,18 +4,18 @@ import (
 	"fmt"
 )
 
-type memory []int
+type memory []byte
 
 func newMemory(b int) memory {
 	return make(memory, b)
 }
 
-func (m *memory) set(addr int, value int) {
+func (m *memory) set(addr int, value byte) {
 	(*m)[addr] = value
 }
 
 // Get returns the value stored in memory address addr.
-func (m *memory) get(addr int) int {
+func (m *memory) get(addr int) byte {
 	return (*m)[addr]
 }
 

@@ -7,15 +7,15 @@ func main() {
 	cpu := newCPU(memory)
 
 	// Set data and instructions in memory.
-	memory.set(0x0, int(MOV_LIT_R1))
+	memory.set(0x0, byte(MOV_LIT_R1))
 	memory.set(0x1, 0x12)
 	memory.set(0x2, 0x34)
-	memory.set(0x3, int(MOV_LIT_R2))
+	memory.set(0x3, byte(MOV_LIT_R2))
 	memory.set(0x4, 0xAB)
 	memory.set(0x5, 0xCD)
-	memory.set(0x6, int(ADD_REG_REG))
-	memory.set(0x7, int(REG_R1)) // r1
-	memory.set(0x8, int(REG_R2)) // r2
+	memory.set(0x6, byte(ADD_REG_REG))
+	memory.set(0x7, byte(REG_R1)) // r1
+	memory.set(0x8, byte(REG_R2)) // r2
 
 	cpu.show()
 	// Fetch a byte.
